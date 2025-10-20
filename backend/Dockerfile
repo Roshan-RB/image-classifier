@@ -1,8 +1,9 @@
 FROM python:3.12-slim
 
-# System deps that help Pillow with image formats
+# system libs needed by opencv/torch
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libjpeg62-turbo libpng16-16 && rm -rf /var/lib/apt/lists/*
+    libgl1 libglib2.0-0 libgomp1 && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY requirements.txt .

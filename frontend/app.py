@@ -22,7 +22,14 @@ if uploaded:
                 resp = requests.post(backend_url, files=files, timeout=30)
                 if resp.ok:
                     data = resp.json()
-                    st.success(f"Label: **{data.get('label','(no label)')}**")
+                    dets = data.get("detections", [])
+                    if not dets:
+                        st.warning("No objects found.")
+                    else:
+                        st.success(f"Found {len(dets)} object(s)")
+                        for d in dets:
+                            st.write(f"- {d['label']} ({d['confidence']:.2f})")
+
                 else:
                     st.error(f"API error {resp.status_code}: {resp.text}")
             except Exception as e:
