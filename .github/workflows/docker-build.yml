@@ -18,16 +18,20 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      # Optional: prints the tree so you can see paths in the logs
+      - name: Show repo tree
+        run: ls -R
+
       - name: Build & Push Backend
         uses: docker/build-push-action@v6
         with:
-          context: ./image-classifier/backend
+          context: ./backend
           push: true
           tags: roshanrb13/image-classifier-backend:latest
 
       - name: Build & Push Frontend
         uses: docker/build-push-action@v6
         with:
-          context: ./image-classifier/frontend
+          context: ./frontend
           push: true
           tags: roshanrb13/image-classifier-frontend:latest
