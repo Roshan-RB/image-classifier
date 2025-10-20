@@ -23,11 +23,11 @@ jobs:
         with:
           context: ./image-classifier/backend
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/image-classifier-backend:latest
+          tags: roshanrb13/image-classifier-backend:latest
 
       - name: Build & Push Frontend
         uses: docker/build-push-action@v6
         with:
           context: ./image-classifier/frontend
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/image-classifier-frontend:latest
+          tags: roshanrb13/image-classifier-frontend:latest
